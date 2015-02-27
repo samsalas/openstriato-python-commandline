@@ -60,19 +60,19 @@ def runpolling():
             tokens = line.split(" ")
             if len(tokens) <= 2:
                 print 'line too short'
-            elif tokens[1] == 'Classic':
+            elif tokens[1] == 'Classic': #MIFARE Classic
                 typeuid = 1
                 print tokens[0]
-            elif tokens[1] == 'Ultralight':
+            elif tokens[1] == 'Ultralight': #MIFARE Ultralight
                 typeuid = 2
             elif tokens[0] == 'UID:':
-                if typeuid == 1:
+                if typeuid == 1: #MIFARE Classic
                     uid = tokens[1]+tokens[2]+tokens[3]+tokens[4]
                     print 'uid found:', uid
                     doaction(uid)
-                elif typeuid == 2:
-                    uid = tokens[1]+tokens[2]+tokens[3]+tokens[4]+\
-                    tokens[5]+tokens[6]+tokens[7]+tokens[8]
+                elif typeuid == 2: #MIFARE Ultralight
+                    uid = tokens[1]+tokens[2]+tokens[3]+\
+                    tokens[4]+tokens[5]+tokens[6]+tokens[7]
                     print 'uid found:', uid
                     doaction(uid)
                 else:
