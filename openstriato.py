@@ -4,6 +4,7 @@
 """
 
 import sys, getopt, os, time
+import xml.etree.ElementTree as ET
 from subprocess import Popen, PIPE
 
 def main(argv):
@@ -35,25 +36,16 @@ def main(argv):
 def doaction(uid):
     """ Do an action from the list of actions available
     """
-    actionlist = ["echo 'This UID doesn t exist in the database'", \
-    "echo 'bonjour'", "omxplayer -o hdmi /home/pi/video/peppa.mp4", \
-    "echo 'merci'", "omxplayer -o hdmi /home/pi/video/ouioui.mp4"]
-    if uid == int('0x8D73F44C', 0):
-        sendcommand(actionlist[1])
-    elif uid == int('0x04FB40915B2380', 0):
-        sendcommand(actionlist[2])
-    elif uid == int('0xDDD9F34C', 0):
-        sendcommand(actionlist[3])
-    elif uid == int('0xAA8847DF', 0):
-        sendcommand(actionlist[4])
-    else:
-        sendcommand(actionlist[0])
-
-def sendcommand(cmd):
-    """ Runs the command in cmd
-    """
+    cmd = getactionfromuid(uid)
     res = os.popen(cmd+"&").read()
     print "result: "+res
+
+def getactionfromuid(uid):
+    """ get the command from the xml file
+    """
+    tree = ET.parse('openstriato.xml')
+    root = tree.getroot()
+    return root.findall("./action[@uid='"+uid+"']")[0].text
 
 def runpolling():
     """ Runs the polling for RFID
@@ -77,12 +69,12 @@ def runpolling():
                 if typeuid == 1:
                     uid = tokens[1]+tokens[2]+tokens[3]+tokens[4]
                     print 'uid found:', uid
-                    doaction(int('0x'+uid, 0))
+                    doaction(uid)
                 elif typeuid == 2:
                     uid = tokens[1]+tokens[2]+tokens[3]+tokens[4]+\
                     tokens[5]+tokens[6]+tokens[7]+tokens[8]
                     print 'uid found:', uid
-                    doaction(int('0x'+uid, 0))
+                    doaction(uid)
                 else:
                     print 'uid type unknown'
                 typeuid = 0
