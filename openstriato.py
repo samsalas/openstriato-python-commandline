@@ -5,6 +5,7 @@
 
 import sys, getopt, os, time
 import xml.etree.ElementTree as ET
+
 from subprocess import Popen, PIPE
 
 def main(argv):
@@ -45,7 +46,17 @@ def getactionfromuid(uid):
     """
     tree = ET.parse('openstriato.xml')
     root = tree.getroot()
-    return root.findall("./action[@uid='"+uid+"']")[0].text
+    textaction = root.findall("./action[@uid='"+uid+"']")
+    if len(textaction) == 0:
+        #add uid if new uid in setting file
+        defaulttext = "echo 'This UID didn t exist so it has been automatically added'"
+        tag = ET.SubElement(root, 'action')
+        tag.text = "echo 'This UID has been automatically added'"
+        tag.attrib['uid'] = uid
+        tree.write('openstriato.xml')
+        return defaulttext
+    else:
+        return textaction[0].text
 
 def runpolling():
     """ Runs the polling for RFID
