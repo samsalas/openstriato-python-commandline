@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <openstriato>
 	<action uid="none">echo 'This UID doesn t exist in the database'</action>
-	<action uid="8D73F44C">omxplayer -o hdmi /home/pi/video/comtines.mp4</action>
-	<action uid="04FB40915B2380">echo 'bonjour'</action>
+	<action uid="8D73F44C">fim -a /home/pi/images/Amicale.jpg</action>
+	<action uid="04FB40915B2380">omxplayer -o hdmi /home/pi/video/caterpillar.mp4</action>
 	<action uid="DDD9F34C">omxplayer -o hdmi /home/pi/video/peppa.mp4</action>
 	<action uid="AA8847DF">omxplayer -o hdmi /home/pi/video/ouioui.mp4</action>
+	<action uid="058C76CAFD0000">omxplayer -o hdmi /home/pi/video/comtines.mp4</action>
+	<action uid="4AE46A81">omxplayer -o hdmi /home/pi/video/comtines.mp4</action>
 </openstriato>
