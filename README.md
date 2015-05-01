@@ -2,7 +2,7 @@
 My contribution to the project OpenStriato, a python package to use "openstriato -arg argument...". This package will be used to control the Raspberry with NFC tags.
 # Static Analysis
 This project uses PyLint. To use PyLint install the package (pip install pylint) and run<br />
-<code>$pylint -f parseable file.py</code>
+<code>$pylint -f parseable openstriato.py > openstriato.out</code>
 # Tests
 This project uses Nose. To use Nose install the package (pip install nose) and run<br />
 <code>$nosetests -v file.py</code><br />
