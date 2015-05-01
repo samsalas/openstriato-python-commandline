@@ -28,7 +28,7 @@ uint16_t * pRxLength
 struct spi_ioc_transfer spi ;
 <b>memset(&spi,0,sizeof(spi));   // add missing initialization</b>
 </pre>
-* For the python to get the result of the pooling, add fflush(stydout) in the polling loop in main.c, line 278
+* For the python to get the result of the pooling, add fflush(stdout) in the polling loop in main.c, line 278
 <pre>
         else
         {
