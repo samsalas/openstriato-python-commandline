@@ -5,9 +5,9 @@ This project uses PyLint. To use PyLint install the package (pip install pylint)
 <code>$pylint -f parseable openstriato.py > openstriato.out</code>
 # Tests
 This project uses Nose. To use Nose install the package (pip install nose) and run<br />
-<code>$nosetests -v file.py</code><br />
+<code>$nosetests -v openstriato.py</code><br />
 You can edit XML reports in JUnit and Cobertura. For example, you can associate a continuous integration tool. Just run<br />
-<code>$nosetests -v file.py -xunit -xcoverage</code>
+<code>$nosetests -v openstriato.py -xunit -xcoverage</code>
 # The Raspberry advices!
 To be able to work the NFC shield on the Raspberry Pi (mine is model Bv2), several things are good to know.
 The basic is described here : http://www.framboise314.fr/jai-teste-pour-vous-la-carte-explore-nfc-delement-14-12/#comment-23647
