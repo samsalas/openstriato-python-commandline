@@ -1,9 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
 <openstriato>
-	<action uid="none">echo 'This UID doesn t exist in the database'</action>
-	<action uid="8D73F44C">fim -a /home/pi/images/Amicale.jpg</action>
-	<action uid="04FB40915B2380">omxplayer -o hdmi /home/pi/video/caterpillar.mp4</action>
-	<action uid="DDD9F34C">omxplayer -o hdmi /home/pi/video/peppa.mp4</action>
-	<action uid="AA8847DF">omxplayer -o hdmi /home/pi/video/ouioui.mp4</action>
-	<action uid="058C76CAFD0000">omxplayer -o hdmi /home/pi/video/comtines.mp4</action>
-	<action uid="4AE46A81">omxplayer -o hdmi /home/pi/video/comtines.mp4</action>
+	<action note="no note" uid="none">echo 'This UID doesn t exist in the database'</action>
+	<action note="no note" uid="8D73F44C">omxplayer -o hdmi /home/pi/video/peppa.mp4</action>
+	<action note="NXP ultralight" uid="04FB40915B2380">omxplayer -o hdmi /home/pi/video/comtines.mp4</action>
+	<action note="no note" uid="DDD9F34C">omxplayer -o hdmi /home/pi/video/ouioui.mp4</action>
+	<action note="no note" uid="AA8847DF">omxplayer -o hdmi /home/pi/video/ouioui.mp4</action>
+	<action note="no note" uid="058C76CAFD0000">omxplayer -o hdmi /home/pi/video/comtines.mp4</action>
+	<action note="no note" uid="4AE46A81">omxplayer -o hdmi /home/pi/video/comtines.mp4</action>
+	<action note="no note" uid="5235">echo 'This UID has been automatically added'</action>
 </openstriato>
