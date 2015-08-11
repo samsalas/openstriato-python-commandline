@@ -9,8 +9,6 @@ import xml.etree.ElementTree as ET
 
 POSIX = os.name == 'posix'
 OPENSTRIATOFILE = "/home/pi/openstriato/openstriato.xml"
-OSPROCESS = 0
-UIDINPROCESS = ''
 
 def main(argv):
     """ Main for using the command line
@@ -77,22 +75,24 @@ def stopaction():
 
 def doaction(uid):
     """ Do an action from the list of actions available
+        This function uses linux pipe (mkfifo /home/pi/openstriato/omfifo)
     """
-    print "Stop previous process"
-    global OSPROCESS
-    global UIDINPROCESS
-    if UIDINPROCESS != uid:
-        UIDINPROCESS = uid
-        if OSPROCESS != 0:
-            program = psutil.Process(OSPROCESS)
-            program.terminate()
-            print 'Process %d terminated' % OSPROCESS
-        print "start new process"
-        cmd = getactionfromuid(uid)
-        tokencmd = cmd.split(" ")
+    res = Popen("cat /home/pi/openstriato/omxpoll", shell=True, stdin=PIPE, stdout=PIPE)
+    val = res.stdout.readline()
+    print val
+    if val == "1\n":
+        print "Stop previous process"
+        tokencmd = "echo -n q > /home/pi/openstriato/omfifo"
         print tokencmd
-        OSPROCESS = Popen(tokencmd).pid
-        print "Process: %d" % OSPROCESS
+        os.system(tokencmd)
+    print "Start new process"
+    tokencmd = "echo 1 > /home/pi/openstriato/omxpoll"
+    print tokencmd
+    os.system(tokencmd)
+    cmd = getactionfromuid(uid)
+    tokencmd = cmd + "< /home/pi/openstriato/omfifo &"
+    print tokencmd
+    os.system(tokencmd)
 
 def processdetailinfo(pid):
     """ Give detailed process information
@@ -306,7 +306,7 @@ def runpolling():
     while 1:
         line = res.stdout.readline()
         if line == '':
-            print "no line"
+            donothing = "no line"
         else:
             tokens = line.split(" ")
             if len(tokens) <= 2:
